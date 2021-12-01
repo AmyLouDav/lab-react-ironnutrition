@@ -12,28 +12,37 @@ function App() {
 
   function createFood(body) {
     body._id = Math.random() * 1000;
-    setFoodsList([body, ...foods]);
+    setFoodsList([body, ...foodsList]);
+    //setFilteredFoods([body, ...foods]);
   }
 
   function searchBar(string) {
-      setFilteredFoods(
-        foodsList.filter((food) =>
-          food.name.toLowerCase().includes(string.toLowerCase())
-        )
-      );
+    setFilteredFoods(
+      foodsList.filter((food) =>
+        food.name.toLowerCase().includes(string.toLowerCase())
+      )
+    );
+  }
+
+  function deleteFoodItem(foodName) {
+    console.log(foodName);
+    const deletedFood = [...foodsList];
+    const index = deletedFood.findIndex((element) => element.name === foodName);
+    console.log(deletedFood[index]);
+    deletedFood.splice(index, 1);
+    setFilteredFoods(deletedFood);
   }
 
   return (
     <div className="App">
-      
       <AddFoodForm parentCb={createFood} />
 
       <Search filteredFoods={searchBar} />
       <h1>Food List</h1>
       <div className="foodContainer">
-      {filteredFoods.map((food) => {
-        return <FoodBox food={food} />;
-      })}
+        {filteredFoods.map((food) => {
+          return <FoodBox deleteItem={deleteFoodItem} food={food} />;
+        })}
       </div>
     </div>
   );
