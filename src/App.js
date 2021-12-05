@@ -25,10 +25,8 @@ function App() {
   }
 
   function deleteFoodItem(foodName) {
-    console.log(foodName);
     const deletedFood = [...foodsList];
     const index = deletedFood.findIndex((element) => element.name === foodName);
-    console.log(deletedFood[index]);
     deletedFood.splice(index, 1);
     setFilteredFoods(deletedFood);
   }

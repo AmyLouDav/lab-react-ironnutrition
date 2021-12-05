@@ -20,10 +20,7 @@ export default function FoodBox(props) {
             </b>{" "}
             kcal
           </p>
-          <Button onClick={() => deleteFoodItem(food.name)} type="primary">
-            {" "}
-            Delete{" "}
-          </Button>
+          <Button onClick={() => deleteFoodItem(food.name)} type="primary">{" "} Delete{" "}</Button>
         </Card>
       </Col>
     </div>
